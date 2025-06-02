@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviator API Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a1a;
+      color: #ffffff;
+      text-align: center;
+      padding: 2rem;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      background: #2d2d2d;
+      padding: 1rem;
+      border-radius: 10px;
+      display: inline-block;
+      white-space: pre-wrap;
+      max-width: 90%;
+      overflow-x: auto;
+    }
+    button {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛫 Bet7K Aviator API Web App</h1>
+  <button onclick="fetchAviatorData()">Fetch Latest Game Data</button>
+
+  <div class="result" id="result">No data yet.</div>
+
+  <script>
+    async function fetchAviatorData() {
+      const url = 'https://bet7k-aviator-api.p.rapidapi.com/bet7k-aviator-latest';
+
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'bet7k-aviator-api.p.rapidapi.com',
+          'x-rapidapi-key': '9394506a50msh7b7df3852a6bc41p1c0326jsne2d2f45f3280'
+        }
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('result').innerText = '❌ Error fetching data.';
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
